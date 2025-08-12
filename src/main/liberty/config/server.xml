@@ -1,0 +1,32 @@
+<server description="Open Liberty Sample Server">
+  <featureManager>
+    <!-- Jakarta EE Features -->
+    <feature>servlet-6.0</feature>
+    <feature>restfulWS-3.1</feature>
+    <feature>jsonb-3.0</feature>
+    <feature>jsonp-2.1</feature>
+    <feature>cdi-4.0</feature>
+
+    <feature>mpHealth-4.0</feature>
+    <feature>mpMetrics-5.0</feature>
+    <feature>mpOpenAPI-3.1</feature>
+    <feature>mpConfig-3.0</feature>
+  </featureManager>
+
+  <httpEndpoint id="defaultHttpEndpoint"
+    host="*"
+    httpPort="9080"
+    httpsPort="9443"/>
+
+  <!-- Enable CORS for OpenAPI -->
+  <cors domain="/" allowedOrigins="*" allowedMethods="GET, HEAD, OPTIONS">
+    <resource path="/openapi/*"/>
+  </cors>
+
+  <mpMetrics authentication="false"/>
+  <applicationMonitor updateTrigger="polled"/>
+
+  <logging traceSpecification="*=info:javax.ws.rs*=all:com.ibm.ws.jaxrs*=all"/>
+
+  <webApplication location="ROOT.war" contextRoot="/"/>
+</server>
